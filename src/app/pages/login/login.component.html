@@ -1,0 +1,21 @@
+<mat-card class="seg-login-card">
+  <mat-card-header class="seg-login-header">
+    <mat-card-title class="seg-login-header-title"> Iniciar Sesión </mat-card-title>
+    <img src="../../../assets/logo.png" style="width: 30%;">
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-form-field class="seg-login--fieldFullWidth">
+        <input matInput placeholder="Usuario" [(ngModel)]="username" name="username" required>
+      </mat-form-field>
+      <mat-form-field class="seg-login--fieldFullWidth">
+        <input matInput placeholder="Contraseña" [(ngModel)]="password" type="password" name="password" required>
+      </mat-form-field>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+  <mat-card-actions class="seg-login-actions">
+    <button mat-raised-button (click)="login()" color="primary"
+      style="font-size: 1.3rem;width: 20%;height: 2.5rem;font-family: 'Righteous', cursive;">Login</button>
+  </mat-card-actions>
+</mat-card>

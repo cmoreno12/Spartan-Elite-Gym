@@ -1,0 +1,31 @@
+.seg-login{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  align-content: center;
+  justify-content: center;
+
+  &-card{
+    height: 50%;
+    width: 50%;
+  }
+
+  &--fieldFullWidth{
+    width: 100%;
+    font-size: large;
+  }
+
+  &-header{
+    justify-content: space-around;
+    align-items: center;
+
+    &-title{
+      font-size: 4.5rem!important;
+      font-family: 'Righteous', cursive;
+    }
+  }
+  &-actions{
+    display: flex !important;
+    justify-content: center;
+  }
+}
