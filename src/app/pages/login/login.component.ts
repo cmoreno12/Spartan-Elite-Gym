@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'seg-login',
@@ -9,7 +11,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(public afAuth: AngularFireAuth) { }
 
   username: string;
   password: string;
@@ -17,8 +19,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  login(): void {
+  login(): Promise<any> {
+    return this.afAuth.auth.signInWithEmailAndPassword('camolave12@gmail.com', '123456')
+      .then((result) => {
+        console.log(result)
 
+      }).catch((error) => {
+        window.alert(error.message)
+      })
   }
-
 }
