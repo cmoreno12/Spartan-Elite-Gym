@@ -1,17 +1,22 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
+
+import { AuthService } from '../../services/auth.service';
+import { MatDialog } from '@angular/material';
+import { RegisterComponent } from './register/register.component';
 
 @Component({
   selector: 'seg-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  host: { class: 'seg-login' }
+  host: { class: 'seg-login' },
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(
+    private authService: AuthService,
+    public dialog: MatDialog
+  ) { }
 
   username: string;
   password: string;
@@ -19,13 +24,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  login(): Promise<any> {
-    return this.afAuth.auth.signInWithEmailAndPassword('camolave12@gmail.com', '123456')
-      .then((result) => {
-        console.log(result)
+  login(email: string, password: string): void {
+    this.authService.SignIn(email, password);
+  }
 
-      }).catch((error) => {
-        window.alert(error.message)
-      })
+  register(): void {
+    const dialogRef = this.dialog.open(RegisterComponent, {
+      width: '250px',
+      // data: { name: this.name, animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
   }
 }

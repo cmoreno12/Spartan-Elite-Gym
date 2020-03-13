@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './pages/login/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UsersModule } from './pages/users/users.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyA-k3p-LTKXPwExuZYO5vlcMtnRbu8sYzI",
@@ -28,6 +29,7 @@ const firebaseConfig = {
     BrowserModule,
     BrowserAnimationsModule,
     LoginModule,
+    UsersModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
