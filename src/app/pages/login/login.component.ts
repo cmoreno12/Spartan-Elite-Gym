@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   register(): void {
     const dialogRef = this.dialog.open(RegisterComponent, {
-      width: '250px',
+      width: '400px',
       // data: { name: this.name, animal: this.animal }
     });
 

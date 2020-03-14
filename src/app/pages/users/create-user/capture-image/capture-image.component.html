@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Crear Usuario</h1>
+<div mat-dialog-content>
+
+  <mat-grid-list cols="2" rowHeight="400px">
+    <mat-grid-tile>
+      <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+        *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+        [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
+        (initError)="handleInitError($event)"></webcam>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="snapshot" *ngIf="pictureTake">
+        <img style="height: 375px; width: 500px;" [src]="pictureTake.imageAsDataUrl" />
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div class="actionBtn">
+    <button mat-raised-button color="primary" (click)="triggerSnapshot()" class="custom-button">Capturar</button>
+  </div>
+</div>
+<div mat-dialog-actions style="flex-direction: row; justify-content: flex-end;">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="pictureTake" color="primary" cdkFocusInitial>Confirmar</button>
+</div>

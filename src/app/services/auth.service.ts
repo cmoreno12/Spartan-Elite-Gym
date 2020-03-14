@@ -8,7 +8,7 @@ import { User } from '../models/user.class';
 @Injectable()
 export class AuthService {
 
-  userData: User;
+  userData: any;
 
   constructor(
     public afs: AngularFirestore,
@@ -38,11 +38,15 @@ export class AuthService {
       })
   }
 
-  SignUp(email, password) {
+  private role;
+  private name;
+  SignUp(email, password, role, name) {
+    this.role = role;
+    this.name = name;
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.SendVerificationMail();
-        this.SetUserData(result.user);
+        this.SetUserData(result.user, this.role, this.name);
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -85,14 +89,15 @@ export class AuthService {
       })
   }
 
-  SetUserData(user) {
+  SetUserData(user, role?, name?) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName,
+      displayName: name ? name : user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
+      role: role ? role : user.role
     }
     return userRef.set(userData, {
       merge: true

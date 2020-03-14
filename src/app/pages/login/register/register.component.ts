@@ -12,6 +12,8 @@ export class RegisterComponent {
 
   email: string;
   password: string;
+  username: string;
+  role: string;
 
   constructor(
     private auth: AuthService,
@@ -23,7 +25,8 @@ export class RegisterComponent {
     this.dialogRef.close();
   }
 
-  register(email: string, password: string) {
-    this.auth.SignUp(email, password).finally(() => this.dialogRef.close());
+  register(email: string, password: string,username:string,role:string) {
+    debugger
+    this.auth.SignUp(email, password,username,role).finally(() => this.dialogRef.close());
   }
 }

@@ -4,12 +4,15 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './pages/login/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersModule } from './pages/users/users.module';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MaterialModule } from './shared/marerial.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyA-k3p-LTKXPwExuZYO5vlcMtnRbu8sYzI",
@@ -23,9 +26,11 @@ const firebaseConfig = {
 };
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
+    MaterialModule,
     BrowserModule,
     BrowserAnimationsModule,
     LoginModule,
@@ -34,6 +39,7 @@ const firebaseConfig = {
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    AgGridModule.withComponents([]),
     AppRoutingModule
   ],
   providers: [],

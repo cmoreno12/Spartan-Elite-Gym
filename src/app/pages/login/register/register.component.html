@@ -7,9 +7,15 @@
     <mat-form-field class="seg-login--fieldFullWidth">
       <input matInput placeholder="Contraseña" [(ngModel)]="password" type="password" name="password" required>
     </mat-form-field>
+    <mat-form-field class="seg-login--fieldFullWidth">
+      <input matInput placeholder="Nombre Usuario" [(ngModel)]="username" name="username" required>
+    </mat-form-field>
+    <mat-form-field class="seg-login--fieldFullWidth">
+      <input matInput placeholder="Rol" [(ngModel)]="role" name="role" required>
+    </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button (click)="register(email, password)">Registrar</button>
+  <button mat-button (click)="register(email, password,username,role)">Registrar</button>
 </div>

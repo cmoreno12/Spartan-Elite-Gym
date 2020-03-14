@@ -1,0 +1,78 @@
+<h1 mat-dialog-title>Crear Usuario</h1>
+<div mat-dialog-content>
+  <mat-grid-list cols="3" rowHeight="100px">
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Cedula" [(ngModel)]="cedula" name="cedula" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Teléfono" [(ngModel)]="telefono" name="telefono" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="3">
+      <img [src]="userImage" style="max-width: 20rem;" (click)="captureImage()">
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Nombres" [(ngModel)]="nombre" name="nombre" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Apellidos" [(ngModel)]="apellidos" name="apellidos" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="EPS" [(ngModel)]="eps" name="eps" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="RH" [(ngModel)]="RH" name="RH" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <mat-label>Sexo</mat-label>
+        <select matNativeControl matNativeControl  [(ngModel)]="sexo" ngDefaultControl required>
+          <option value="Femenino">Femenino</option>
+          <option value="Masculino">Masculino</option>
+        </select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="fechaNacimiento" name="fechaNacimiento" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Ciudad" [(ngModel)]="ciudad" name="ciudad" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth" >
+        <mat-label>Estado</mat-label>
+        <select matNativeControl [(ngModel)]="estado" ngDefaultControl required>
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+      <mat-form-field style="width: 95%;">
+        <textarea matInput placeholder="Dirección" [(ngModel)]="direccion" name="direccion" required></textarea>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div mat-dialog-actions style="flex-direction: row; justify-content: flex-end;">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="create()">Crear Usuario</button>
+</div>
