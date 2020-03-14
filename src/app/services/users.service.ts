@@ -15,4 +15,12 @@ export class FirebaseDataService {
   createElement(collection:string,data:any){
     return this.db.collection(collection).add(data);
   }
+
+  updateElement(collection:string,documentId: string, data: any) {
+    return this.db.collection(collection).doc(documentId).set(data);
+  }
+
+  deleteElement(collection:string,documentId: string) {
+    return this.db.collection(collection).doc(documentId).delete();
+  }
 }

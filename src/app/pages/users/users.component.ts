@@ -122,7 +122,8 @@ export class UsersComponent implements OnInit {
       cellRendererParams: {
         isEdit: true,
         isDelete: true,
-        // onClickEdit: this.editRow.bind(this),
+        onClickEdit: this.editUser.bind(this),
+        onClickDelete: this.deleteUser.bind(this),
       },
     }
   ];
@@ -157,5 +158,21 @@ export class UsersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.rowData = this.getData()
     });
+  }
+
+  editUser(data) {
+    const dialogRef = this.dialog.open(CreateUserComponent, {
+      width: '1000px',
+      data: data
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.rowData = this.getData()
+    });
+  }
+
+  deleteUser(data) {
+    this.firebaseDataService.deleteElement('gym-users', data.id).then(() => {
+      alert('Usuario Eliminado Satisfactoriamente')
+    }).catch(e => alert(e));
   }
 }

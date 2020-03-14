@@ -1,9 +1,9 @@
-<h1 mat-dialog-title>Crear Usuario</h1>
+<h1 mat-dialog-title>{{esEditar?'Editar Usuario':'Crear Usuario'}}</h1>
 <div mat-dialog-content>
   <mat-grid-list cols="3" rowHeight="100px">
     <mat-grid-tile>
       <mat-form-field class="fieldFullWidth">
-        <input autocomplete="off" matInput placeholder="Cedula" [(ngModel)]="cedula" name="cedula" required>
+        <input autocomplete="off" matInput placeholder="Cedula" [disabled]="esEditar" [(ngModel)]="cedula" name="cedula" required>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
@@ -31,7 +31,17 @@
     </mat-grid-tile>
     <mat-grid-tile>
       <mat-form-field class="fieldFullWidth">
-        <input autocomplete="off" matInput placeholder="RH" [(ngModel)]="RH" name="RH" required>
+        <mat-label>RH</mat-label>
+        <select matNativeControl matNativeControl [(ngModel)]="RH" name="RH" required>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+        </select>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
@@ -74,5 +84,5 @@
 </div>
 <div mat-dialog-actions style="flex-direction: row; justify-content: flex-end;">
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button (click)="create()">Crear Usuario</button>
+  <button mat-button (click)="create()">{{esEditar?'Guardar Cambios':'Crear Usuario'}}</button>
 </div>

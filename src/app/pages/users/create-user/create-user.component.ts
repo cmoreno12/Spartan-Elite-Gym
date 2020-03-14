@@ -20,21 +20,43 @@ export class CreateUserComponent {
   nombre: string;
   eps: string;
   apellidos: string;
-  RH: string;
+  RH: string = "O+";
   sexo: string = 'Femenino';
   fechaNacimiento: Date;
-  ciudad: string;
+  ciudad: string = "Subachoque";
   estado: string = 'Activo';
   direccion: string;
   userImage: string = '../../../../assets/no-image.png';
+  esEditar: boolean = false;
+  userId: string;
 
   constructor(
     public dialog: MatDialog,
     private firebaseDataService: FirebaseDataService,
     public dialogRef: MatDialogRef<CreateUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {
+    if (data) {
+      this.esEditar = true;
+      this.inicializarUsuario(data);
+    }
+  }
 
+  inicializarUsuario(data) {
+    this.userId = data.id;
+    this.cedula = data.cedula;
+    this.telefono = data.telefono;
+    this.nombre = data.nombre;
+    this.eps = data.EPS;
+    this.apellidos = data.apellidos;
+    this.RH = data.RH;
+    this.sexo = data.sexo;
+    this.fechaNacimiento = data.fechaNacimiento.toDate();
+    this.ciudad = data.ciudad;
+    this.estado = data.estado;
+    this.direccion = data.direccion;
+    this.userImage = data.userImage;
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -55,10 +77,17 @@ export class CreateUserComponent {
   }
 
   create() {
-    const user = this.getUserPojo();
-    this.firebaseDataService.createElement('gym-users', user).then(x => {
-      this.dialogRef.close();
-    }).catch(e => alert(e));
+    if(this.esEditar){
+      const user = this.getUserPojo();
+      this.firebaseDataService.updateElement('gym-users', this.userId,user).then(x => {
+        this.dialogRef.close();
+      }).catch(e => alert(e));
+    }else{
+      const user = this.getUserPojo();
+      this.firebaseDataService.createElement('gym-users', user).then(x => {
+        this.dialogRef.close();
+      }).catch(e => alert(e));
+    }
   }
 
   private getUserPojo(): UserGym {
