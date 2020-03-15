@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Module } from 'ag-grid-community';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { MatDialog } from '@angular/material';
 import { ActionRendererComponent } from 'src/app/shared/cell-renderers/actions/action-renderer.component';
@@ -11,6 +10,8 @@ import { FirebaseDataService } from 'src/app/services/users.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+  activos: number;
+  inactivos: number;
   constructor(public dialog: MatDialog,
     private firebaseDataService: FirebaseDataService,
   ) { }
@@ -25,7 +26,7 @@ export class UsersComponent implements OnInit {
     },
     {
       headerName: 'Nombres',
-      field: 'nombre',
+      field: 'nombres',
       width: '150',
       sortable: true,
       filter: "agTextColumnFilter"
@@ -130,8 +131,6 @@ export class UsersComponent implements OnInit {
 
   rowData = [];
 
-
-
   ngOnInit() {
     this.getData();
   }
@@ -146,6 +145,9 @@ export class UsersComponent implements OnInit {
         }
         array.push(person)
       })
+      this.activos = array.filter(x => x.estado == 'Activo').length;
+      this.inactivos = array.filter(x => x.estado == 'Inactivo').length;
+
       this.rowData = array;
     })
   }

@@ -2,7 +2,7 @@ export interface UserGym {
   id?: string;
   cedula: string;
   telefono: string;
-  nombre: string;
+  nombres: string;
   apellidos: string;
   EPS: string;
   RH: string;

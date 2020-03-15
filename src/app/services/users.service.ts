@@ -6,21 +6,24 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class FirebaseDataService {
 
-  constructor(private db:AngularFirestore) { }
+  constructor(private db: AngularFirestore) { }
 
-  getData(collection:string){
+  getData(collection: string) {
     return this.db.collection(collection).snapshotChanges();
   }
 
-  createElement(collection:string,data:any){
+  createElement(collection: string, data: any) {
     return this.db.collection(collection).add(data);
   }
 
-  updateElement(collection:string,documentId: string, data: any) {
+  updateElement(collection: string, documentId: string, data: any) {
     return this.db.collection(collection).doc(documentId).set(data);
   }
 
-  deleteElement(collection:string,documentId: string) {
+  deleteElement(collection: string, documentId: string) {
     return this.db.collection(collection).doc(documentId).delete();
   }
+
 }
+
+

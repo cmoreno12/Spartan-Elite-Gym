@@ -46,12 +46,12 @@ export class CreateUserComponent {
     this.userId = data.id;
     this.cedula = data.cedula;
     this.telefono = data.telefono;
-    this.nombre = data.nombre;
+    this.nombre = data.nombres;
     this.eps = data.EPS;
     this.apellidos = data.apellidos;
     this.RH = data.RH;
     this.sexo = data.sexo;
-    this.fechaNacimiento = data.fechaNacimiento.toDate();
+    this.fechaNacimiento = data.fechaNacimiento ? data.fechaNacimiento.toDate() : new Date();
     this.ciudad = data.ciudad;
     this.estado = data.estado;
     this.direccion = data.direccion;
@@ -77,12 +77,12 @@ export class CreateUserComponent {
   }
 
   create() {
-    if(this.esEditar){
+    if (this.esEditar) {
       const user = this.getUserPojo();
-      this.firebaseDataService.updateElement('gym-users', this.userId,user).then(x => {
+      this.firebaseDataService.updateElement('gym-users', this.userId, user).then(x => {
         this.dialogRef.close();
       }).catch(e => alert(e));
-    }else{
+    } else {
       const user = this.getUserPojo();
       this.firebaseDataService.createElement('gym-users', user).then(x => {
         this.dialogRef.close();
@@ -95,7 +95,7 @@ export class CreateUserComponent {
     return {
       cedula: this.cedula,
       telefono: this.telefono,
-      nombre: this.nombre,
+      nombres: this.nombre,
       apellidos: this.apellidos,
       EPS: this.eps,
       RH: this.RH,
