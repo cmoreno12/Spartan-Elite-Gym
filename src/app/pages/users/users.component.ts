@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { MatDialog } from '@angular/material';
 import { ActionRendererComponent } from 'src/app/shared/cell-renderers/actions/action-renderer.component';
-import { FirebaseDataService } from 'src/app/services/users.service';
+import { FirebaseDataService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'seg-users',

@@ -5,7 +5,7 @@ import { WebcamImage } from 'ngx-webcam';
 import { CaptureImageComponent } from './capture-image/capture-image.component';
 import { UserGym } from '../../../models/user-gym.class';
 import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
-import { FirebaseDataService } from '../../../services/users.service';
+import { FirebaseDataService } from '../../../services/firebase.service';
 
 
 @Component({

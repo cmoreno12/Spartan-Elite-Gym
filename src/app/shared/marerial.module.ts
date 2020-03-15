@@ -5,6 +5,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AgGridModule } from 'ag-grid-angular';
 import { ActionRendererComponent } from './cell-renderers/actions/action-renderer.component';
+import { MoneyRendererComponent } from './cell-renderers/money-renderer/money-renderer.component';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { ActionRendererComponent } from './cell-renderers/actions/action-rendere
     MatIconModule,
     MatProgressSpinnerModule,
     MatDatepickerModule,
-    AgGridModule.withComponents([ActionRendererComponent]),
+    AgGridModule.withComponents([ActionRendererComponent, MoneyRendererComponent]),
 
   ],
   exports: [
@@ -38,6 +39,6 @@ import { ActionRendererComponent } from './cell-renderers/actions/action-rendere
     MatDatepickerModule,
     ActionRendererComponent
   ],
-  declarations: [ActionRendererComponent]
+  declarations: [ActionRendererComponent, MoneyRendererComponent]
 })
 export class MaterialModule { }

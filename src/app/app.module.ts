@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersModule } from './pages/users/users.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialModule } from './shared/marerial.module';
+import { PlansModule } from './pages/plans/plans.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyA-k3p-LTKXPwExuZYO5vlcMtnRbu8sYzI",
@@ -35,6 +36,7 @@ const firebaseConfig = {
     BrowserAnimationsModule,
     LoginModule,
     UsersModule,
+    PlansModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
