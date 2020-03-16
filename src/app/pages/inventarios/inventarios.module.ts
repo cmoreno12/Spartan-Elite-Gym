@@ -8,9 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { WebcamModule } from 'ngx-webcam';
 import { AgGridModule } from 'ag-grid-angular';
 import { CreateInventarioComponent } from './create-inventario/create-inventario.component';
+import { FacturarComponent } from './facturar/facturar.component';
 
 @NgModule({
-  declarations: [InventariosComponent, CreateInventarioComponent],
+  declarations: [InventariosComponent, CreateInventarioComponent, FacturarComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -22,6 +23,6 @@ import { CreateInventarioComponent } from './create-inventario/create-inventario
     WebcamModule,
     AgGridModule.withComponents([])
   ],
-  entryComponents: [CreateInventarioComponent]
+  entryComponents: [CreateInventarioComponent,FacturarComponent]
 })
 export class InventariosModule { }

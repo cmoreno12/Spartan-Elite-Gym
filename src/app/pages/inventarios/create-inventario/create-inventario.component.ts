@@ -40,7 +40,6 @@ export class CreateInventarioComponent {
     this.valorCompra = data.valorCompra;
     this.valorVenta = data.valorVenta;
     this.utilidad = data.utilidad;
-    this.esEditar = data.esEditar;
   }
 
   onNoClick(): void {

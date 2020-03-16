@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material';
 import { ActionRendererComponent } from 'src/app/shared/cell-renderers/actions/action-renderer.component';
 import { FirebaseDataService } from 'src/app/services/firebase.service';
 import { PagosComponent } from './pagos/pagos.component';
+import { DateRendererComponent } from 'src/app/shared/cell-renderers/date-renderer/date-renderer.component';
+import { FacturarComponent } from '../inventarios/facturar/facturar.component';
 
 @Component({
   selector: 'seg-users',
@@ -56,7 +58,7 @@ export class UsersComponent implements OnInit {
     },
     {
       headerName: 'Plan',
-      field: 'Plan',
+      field: 'plan',
       sortable: true,
       width: '173'
     },
@@ -64,6 +66,7 @@ export class UsersComponent implements OnInit {
       headerName: 'Inicio',
       field: 'inicio',
       sortable: true,
+      cellRendererFramework: DateRendererComponent,
       width: '150',
       filter: "agDateColumnFilter",
       filterParams: {
@@ -91,6 +94,7 @@ export class UsersComponent implements OnInit {
       sortable: true,
       width: '160',
       filter: "agDateColumnFilter",
+      cellRendererFramework: DateRendererComponent,
       filterParams: {
         comparator: function (filterLocalDateAtMidnight, cellValue) {
           var dateAsString = cellValue;
@@ -174,7 +178,16 @@ export class UsersComponent implements OnInit {
       width: '1000px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.rowData = this.getData()
+      this.rowData = this.getData();
+      if(result){
+        const dialogRef = this.dialog.open(FacturarComponent, {
+          width: '1500px',
+          data: { result }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+
+        });
+      }
     });
   }
 

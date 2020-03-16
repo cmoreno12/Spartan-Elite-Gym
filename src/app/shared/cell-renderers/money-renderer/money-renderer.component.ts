@@ -10,7 +10,6 @@ export class MoneyRendererComponent implements ICellRendererAngularComp {
   value:any;
 
   agInit(params: any): void {
-    debugger
     this.value = params.value;
   }
 

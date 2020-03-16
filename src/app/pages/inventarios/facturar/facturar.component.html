@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>Facturación</h1>
+<div mat-dialog-content>
+  <mat-grid-list cols="3" rowHeight="100px">
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field style="width: 80%;">
+        <input autocomplete="off" matInput placeholder="Número de Documento" [(ngModel)]="documento" name="documento"
+          required>
+      </mat-form-field>
+      <button style="border:none; background-color: none; margin-left: 8px;" (click)="findUser(documento)">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Nombre" disabled="true" [(ngModel)]="nombre" name="nombre"
+          required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field class="fieldFullWidth">
+        <mat-label>Producto</mat-label>
+        <select matNativeControl matNativeControl [(ngModel)]="codigo" (ngModelChange)="findProduct(codigo)"
+          name="codigo" required>
+          <option *ngFor="let p of inventarios" [ngValue]="p">{{p.producto}}</option>
+        </select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Cantidad" [(ngModel)]="cantidad" name="cantidad" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Precio" disabled="true" [(ngModel)]="precio" name="precio"
+          required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-raised-button color="primary" (click)="agregarItem()" style="width: 40%;"
+        class="custom-button">Agregar</button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="3">
+      <ag-grid-angular style="width: 96%;height: 85%;margin:1%" class="ag-theme-balham" [rowData]="rowData"
+        [columnDefs]="columnDefs" [rowHeight]="45">
+      </ag-grid-angular>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div mat-dialog-actions style="flex-direction: row; justify-content: flex-end;">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <!-- <button mat-button (click)="create()">{{esEditar?'Guardar Cambios':'Crear Producto'}}</button> -->
+</div>

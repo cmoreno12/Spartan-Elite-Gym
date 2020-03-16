@@ -5,6 +5,7 @@ import { FirebaseDataService } from '../../../services/firebase.service';
 import { map, startWith } from "rxjs/operators";
 import { FormControl } from '@angular/forms';
 import { UserGym } from '../../../models/user-gym.class';
+import { Planes } from 'src/app/models/planes.class';
 
 @Component({
   selector: 'seg-pagos',
@@ -17,7 +18,7 @@ export class PagosComponent implements OnInit {
   apellidos: string;
   plan: string;
   fechaPago: Date;
-  planNuevo: string;
+  planNuevo: Planes;
   monto: string;
   userImage: string = '../../../../assets/no-image.png';
   plans: any;
@@ -85,6 +86,21 @@ export class PagosComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  confirmar(): void {
+    const user = this.gymUsers.filter(x => x.cedula.toString() === this.documento).pop();
+    user.inicio = this.fechaPago;
+    user.plan=this.planNuevo.nombre;
+    user.vencimiento = this.addDays(this.fechaPago, this.planNuevo.dias);
+    this.firebaseDataService.updateElement('gym-users', user.id, user);
+    this.dialogRef.close({ cedula: this.documento, plan: this.planNuevo.nombre, monto: this.planNuevo.precio });
+  }
+
+  private addDays(date, days): Date {
+    const copy = new Date(Number(date))
+    copy.setDate(date.getDate() + days+1)
+    return copy
   }
 
 }

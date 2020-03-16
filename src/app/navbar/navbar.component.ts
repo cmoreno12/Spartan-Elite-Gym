@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { FacturarComponent } from '../pages/inventarios/facturar/facturar.component';
 
 @Component({
   selector: 'seg-navbar',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
+
+  openFacturacion(){
+    const dialogRef = this.dialog.open(FacturarComponent, {
+      width: '1000px',
+    });
+  }
+
 
 }
