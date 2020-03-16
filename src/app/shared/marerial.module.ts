@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule, MatTableModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule, MatTableModule, MatToolbarModule, MatAutocompleteModule } from '@angular/material';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AgGridModule } from 'ag-grid-angular';
@@ -21,6 +21,7 @@ import { MoneyRendererComponent } from './cell-renderers/money-renderer/money-re
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatAutocompleteModule,
     MatDatepickerModule,
     AgGridModule.withComponents([ActionRendererComponent, MoneyRendererComponent]),
 
@@ -33,6 +34,7 @@ import { MoneyRendererComponent } from './cell-renderers/money-renderer/money-re
     MatInputModule,
     MatDialogModule,
     MatTableModule,
+    MatAutocompleteModule,
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,

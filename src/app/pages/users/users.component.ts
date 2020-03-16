@@ -3,6 +3,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { MatDialog } from '@angular/material';
 import { ActionRendererComponent } from 'src/app/shared/cell-renderers/actions/action-renderer.component';
 import { FirebaseDataService } from 'src/app/services/firebase.service';
+import { PagosComponent } from './pagos/pagos.component';
 
 @Component({
   selector: 'seg-users',
@@ -117,6 +118,13 @@ export class UsersComponent implements OnInit {
       filter: "agTextColumnFilter"
     },
     {
+      headerName: 'Clave',
+      field: 'clave',
+      sortable: true,
+      width: '100',
+      filter: "agTextColumnFilter"
+    },
+    {
       headerName: '',
       width: '100',
       cellRendererFramework: ActionRendererComponent,
@@ -155,7 +163,15 @@ export class UsersComponent implements OnInit {
   createUser() {
     const dialogRef = this.dialog.open(CreateUserComponent, {
       width: '1000px',
-      // data: { name: this.name, animal: this.animal }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.rowData = this.getData()
+    });
+  }
+
+  realizarPago() {
+    const dialogRef = this.dialog.open(PagosComponent, {
+      width: '1000px',
     });
     dialogRef.afterClosed().subscribe(result => {
       this.rowData = this.getData()

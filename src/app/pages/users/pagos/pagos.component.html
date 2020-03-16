@@ -1,0 +1,64 @@
+<h1 mat-dialog-title>Pagos</h1>
+<div mat-dialog-content>
+  <mat-grid-list cols="2" rowHeight="100px">
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field style="width: 80%;">
+        <input autocomplete="off" matInput placeholder="Número de Documento" [(ngModel)]="documento" name="documento"
+          required>
+      </mat-form-field>
+      <button style="border:none; background-color: none; margin-left: 8px;" (click)="findUser(documento)">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="3">
+      <img [src]="userImage" style="max-width: 20rem;">
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Nombres" disabled="true" [(ngModel)]="nombres" name="nombres"
+          required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Apellidos" disabled="true" [(ngModel)]="apellidos"
+          name="apellidos" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Plan Actual" disabled="true" [(ngModel)]="plan" name="plan"
+          required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field class="fieldFullWidth">
+        <mat-label>Fecha de Pago</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="fechaPago" name="fechaPago" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <mat-label>Plan a Pagar</mat-label>
+        <select matNativeControl matNativeControl [(ngModel)]="planNuevo" (ngModelChange)="updateMonto($event)"
+          name="planNuevo" required>
+          <ng-container *ngFor="let p of plans | async">
+            <option [ngValue]="p">{{p.nombre}}</option>
+          </ng-container>
+        </select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Monto a Pagar" [(ngModel)]="monto" data-type="currency"
+          name="monto" required>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div mat-dialog-actions style="flex-direction: row; justify-content: flex-end;">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <!-- <button mat-button (click)="create()">{{esEditar?'Guardar Cambios':'Crear Usuario'}}</button> -->
+</div>

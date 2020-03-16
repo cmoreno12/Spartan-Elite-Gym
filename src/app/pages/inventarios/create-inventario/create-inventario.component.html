@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>{{esEditar?'Editar Producto':'Crear Producto'}}</h1>
+<div mat-dialog-content>
+  <mat-grid-list cols="2" rowHeight="100px">
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Codigo" [(ngModel)]="codigo" name="codigo" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Producto" [(ngModel)]="producto" name="producto" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Cantidad" [(ngModel)]="cantidad" name="cantidad" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Valor Compra" [(ngModel)]="valorCompra" name="valorCompra"
+          required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Valor Venta" [(ngModel)]="valorVenta" name="valorVenta"
+          required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="fieldFullWidth">
+        <input autocomplete="off" matInput placeholder="Utilidad" disabled="true" [(ngModel)]="utilidad"
+          name="utilidad" required>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div mat-dialog-actions style="flex-direction: row; justify-content: flex-end;">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="create()">{{esEditar?'Guardar Cambios':'Crear Producto'}}</button>
+</div>

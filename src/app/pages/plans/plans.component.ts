@@ -27,7 +27,7 @@ export class PlansComponent implements OnInit {
     {
       headerName: 'Precio',
       field: 'precio',
-      width: '400',
+      width: '500',
       sortable: true,
       cellRendererFramework: MoneyRendererComponent,
       filter: "agTextColumnFilter"
