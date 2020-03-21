@@ -9,4 +9,5 @@ export interface Facturacion {
   valorRecibido: number;
   valorCambio: number;
   fechaFactura: Date;
+  usuarioAdmin: string;
 }

@@ -7,10 +7,12 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  email: string;
 
   constructor(public auth:AuthService) { }
 
   ngOnInit() {
+    this.email = JSON.parse(sessionStorage.getItem('user')).email;
   }
 
 }

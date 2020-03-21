@@ -179,6 +179,7 @@ export class FacturarComponent {
       valorCambio: 0,
       valorRecibido: 0,
       fechaFactura: new Date(),
+      usuarioAdmin:JSON.parse(sessionStorage.getItem('user')).email
     }
     return factura;
   }
