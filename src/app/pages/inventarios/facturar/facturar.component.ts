@@ -6,6 +6,10 @@ import { FirebaseDataService } from '../../../services/firebase.service';
 import { Inventarios } from '../../../models/inventarios.class';
 import { MoneyRendererComponent } from 'src/app/shared/cell-renderers/money-renderer/money-renderer.component';
 import { ActionRendererComponent } from 'src/app/shared/cell-renderers/actions/action-renderer.component';
+import { MontoFacturarComponent } from './monto-facturar/monto-facturar.component';
+import { Facturacion } from '../../../models/facturacion';
+import { InventarioFacturacion } from '../../../models/inventario-facturacion';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'seg-facturar',
@@ -80,10 +84,11 @@ export class FacturarComponent {
   dataInit;
   rowData = [];
   inventario: Inventarios;
-
+  gymUser: UserGym;
 
   constructor(
     public dialog: MatDialog,
+    private router: Router,
     private firebaseDataService: FirebaseDataService,
     public dialogRef: MatDialogRef<CreateUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -97,7 +102,6 @@ export class FacturarComponent {
 
   inicializar() {
     this.findUser(this.dataInit.cedula);
-    // this.findProduct(data.result.cedula);
   }
 
   private getUsers() {
@@ -143,6 +147,40 @@ export class FacturarComponent {
     );
   }
 
+  continuar() {
+    const data = this.getData();
+    const dialogRef = this.dialog.open(MontoFacturarComponent, {
+      width: '500px',
+      data: data
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.firebaseDataService.createElement('facturas', result).then(x => {
+        this.router.navigate(['/facturacion'], { queryParams: { id: x.id } });
+        this.dialogRef.close();
+      })
+    });
+  }
+
+  getData() {
+    const valorTotal = this.getTotal();
+    const factura: Facturacion = {
+      user: this.gymUser,
+      inventarios: this.rowData,
+      valorTotalFactura: valorTotal,
+      valorCambio: 0,
+      valorRecibido: 0,
+      fechaFactura: new Date(),
+    }
+    return factura;
+  }
+
+  getTotal() {
+    let sum = 0;
+    this.rowData.forEach(element => {
+      sum = sum + element.total;
+    });
+    return sum;
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -150,6 +188,7 @@ export class FacturarComponent {
   findUser(documento) {
     const user = this.gymUsers.filter(x => x.cedula.toString() === documento).pop();
     if (user) {
+      this.gymUser = user;
       this.nombre = `${user.nombres} ${user.apellidos}`;
     } else {
       alert(`No se encontro usuario por el documento: "${documento}"`)
@@ -157,9 +196,10 @@ export class FacturarComponent {
   }
 
   agregarItem() {
-    const x = {
+    const x: InventarioFacturacion = {
       id: Math.random(),
       codigo: this.codigo.codigo,
+      idInventario: this.inventario.id,
       producto: this.inventario.producto,
       existencia: this.inventario.cantidad,
       cantidad: this.cantidad,

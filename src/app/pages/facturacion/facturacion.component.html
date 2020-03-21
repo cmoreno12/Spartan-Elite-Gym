@@ -1,0 +1,54 @@
+<mat-card style="display: flex;flex-direction: column;justify-content: center;height: 85%;">
+  <mat-card-header style="display: flex; justify-content: space-around;align-items: flex-end;">
+    <button mat-raised-button class="custom-button" (click)="generarPDF()" color="primary">Imprimir</button>
+  </mat-card-header>
+  <mat-card-content style="display: flex;justify-content: center;margin-right: 100px;">
+    <mat-card id="toPdf" *ngIf="factura" style="width: 25%;">
+      <mat-card-header class="header">
+        <br>
+        <img src="../../../assets/bw_logo.png">
+        <h1>Ticket de Caja</h1>
+        <p>Nro: {{factura.id}}</p>
+        <p>Calle 2 3E 43 Barrio el Bosque</p>
+        <p>Fecha: {{factura.fechaFactura | date:'dd/MM/yyyy hh:mm'}}</p><br>
+        <p>Cliente: {{factura.user.nombres+' '+factura.user.apellidos }}</p>
+        <p>CC: {{factura.user.cedula}}</p><br>
+      </mat-card-header>
+      <mat-card-content class="content">
+
+        <table class="table1" style="width:80%">
+          <tr>
+            <th class="th-table1">Cantidad</th>
+            <th class="th-table1">Descripción</th>
+            <th class="th-table1">Precio</th>
+          </tr>
+          <tr *ngFor="let inventory of factura.inventarios">
+            <td class="td-table1" style="width: 80px;">{{inventory.cantidad}}</td>
+            <td class="td-table1" style="text-align: center;padding:0;">{{inventory.producto}}</td>
+            <td class="td-table1" style="width: 100px;">{{inventory.total | currency:'USD' : 'symbol' : '1.0-0'}}</td>
+          </tr>
+        </table>
+        <table style="width:80%">
+          <tr>
+            <td class="td-table2">Total:</td>
+            <td class="td-table2" style="width: 100px;">
+              {{factura.valorTotalFactura | currency:'USD' : 'symbol' : '1.0-0'}}</td>
+          </tr>
+          <tr>
+            <td class="td-table2">Recibido:</td>
+            <td class="td-table2" style="width: 100px;">{{factura.valorRecibido | currency:'USD' : 'symbol' : '1.0-0'}}
+            </td>
+          </tr>
+          <tr>
+            <td class="td-table2">Cambio:</td>
+            <td class="td-table2" style="width: 100px;">{{factura.valorCambio | currency:'USD' : 'symbol' : '1.0-0'}}
+            </td>
+          </tr>
+        </table><br>
+        <p>Atendido por: Ingry Mora</p>
+        <p>Gracias por su compra...</p><br>
+        <p>spartanelitegym@gmail.com - 3112467920 - www.spartanelitegym.co</p>
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+</mat-card>

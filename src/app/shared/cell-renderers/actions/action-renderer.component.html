@@ -1,7 +1,11 @@
-<button mat-icon-button class="action-renderer" *ngIf="isEdit" (click)="edit()" matTooltip="Edit" matTooltipPosition="above">
+<button mat-icon-button class="action-renderer" *ngIf="isEdit" (click)="edit()" matTooltip="Editar" matTooltipPosition="above">
     <mat-icon class="action-renderer-icon">edit</mat-icon>
 </button>
 
-<button mat-icon-button  class="action-renderer" *ngIf="isDelete" (click)="delete()" matTooltip="Delete" matTooltipPosition="above">
+<button mat-icon-button  class="action-renderer" *ngIf="isDelete" (click)="delete()" matTooltip="Borrar" matTooltipPosition="above">
   <mat-icon class="action-renderer-icon">delete</mat-icon>
+</button>
+
+<button mat-icon-button  class="action-renderer" *ngIf="isPrint" (click)="print()" matTooltip="Imprimir" matTooltipPosition="above">
+  <mat-icon class="action-renderer-icon">print</mat-icon>
 </button>

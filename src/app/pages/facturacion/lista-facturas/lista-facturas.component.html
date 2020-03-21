@@ -1,0 +1,11 @@
+<mat-card class="example-card">
+  <mat-card-header class="header">
+    <h1>Facturas</h1>
+    <button mat-raised-button color="primary" class="custom-button" (click)="openFacturacion()">Facturar</button>
+  </mat-card-header>
+  <mat-card-content style="height: 90%;">
+    <ag-grid-angular style="height: 85%;margin:1%" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs"
+      [rowHeight]="45">
+    </ag-grid-angular>
+  </mat-card-content>
+</mat-card>

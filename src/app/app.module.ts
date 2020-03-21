@@ -15,6 +15,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialModule } from './shared/marerial.module';
 import { PlansModule } from './pages/plans/plans.module';
 import { InventariosModule } from './pages/inventarios/inventarios.module';
+import { FacturacionComponent } from './pages/facturacion/facturacion.component';
+import { FacturacionModule } from './pages/facturacion/facturacion.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyA-k3p-LTKXPwExuZYO5vlcMtnRbu8sYzI",
@@ -38,6 +40,7 @@ const firebaseConfig = {
     LoginModule,
     UsersModule,
     PlansModule,
+    FacturacionModule,
     InventariosModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,

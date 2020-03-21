@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Facturación</h1>
+<div mat-dialog-content>
+  <mat-grid-list cols="3" rowHeight="100px">
+    <mat-grid-tile>
+      <mat-form-field style="width: 80%;">
+        <input autocomplete="off" matInput disabled="true" type="number" placeholder="Monto Facturar"
+          [(ngModel)]="monto" name="monto" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field style="width: 80%;">
+        <input autocomplete="off" matInput type="number" placeholder="Recibido" [(ngModel)]="recibido"
+          (ngModelChange)="calcCambio(monto,recibido)" name="recibido" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field style="width: 80%;">
+        <input autocomplete="off" disabled="true" matInput placeholder="Cambio" [(ngModel)]="cambio" name="cambio"
+          required>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div mat-dialog-actions style="flex-direction: row; justify-content: flex-end;">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="finalizar()" color="primary">Finalizar</button>
+</div>

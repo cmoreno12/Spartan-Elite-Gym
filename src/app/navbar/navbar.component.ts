@@ -9,16 +9,9 @@ import { FacturarComponent } from '../pages/inventarios/facturar/facturar.compon
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor() { }
 
   ngOnInit() {
   }
-
-  openFacturacion(){
-    const dialogRef = this.dialog.open(FacturarComponent, {
-      width: '1000px',
-    });
-  }
-
 
 }
