@@ -37,7 +37,7 @@
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
-      <button mat-raised-button color="primary" (click)="agregarItem()" style="width: 40%;"
+      <button mat-raised-button (click)="agregarItem()" style="width: 40%;background-color: black;color:white;"
         class="custom-button">Agregar</button>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="3">
@@ -49,5 +49,5 @@
 </div>
 <div mat-dialog-actions style="flex-direction: row; justify-content: flex-end;">
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button (click)="continuar()" color="primary">Continuar</button>
+  <button mat-button (click)="continuar()" style="background-color: black;color:white;">Continuar</button>
 </div>

@@ -19,9 +19,9 @@ export class AuthService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
+        sessionStorage.setItem('user', JSON.stringify(this.userData));
       } else {
-        localStorage.setItem('user', null);
+        sessionStorage.setItem('user', null);
       }
     })
   }
@@ -69,8 +69,8 @@ export class AuthService {
   }
 
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    return (user !== null) ? true : false;
   }
 
   GoogleAuth() {
@@ -97,7 +97,7 @@ export class AuthService {
       displayName: name ? name : user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
-      role: role ? role : user.role
+      role: role ? role : null
     }
     return userRef.set(userData, {
       merge: true
@@ -106,8 +106,8 @@ export class AuthService {
 
   SignOut() {
     return this.afAuth.auth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
+      sessionStorage.removeItem('user');
+      this.router.navigate(['/login']);
     })
   }
 }

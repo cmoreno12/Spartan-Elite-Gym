@@ -1,10 +1,11 @@
-<mat-toolbar color="primary">
+<mat-toolbar style="background-color: black;">
   <mat-toolbar-row>
-    <a>Spartan Elite Gym</a>
+    <img style="width: 5%;" src="../../assets/logo-black-bg.png">
     <span class="example-spacer"></span>
     <a [routerLink]="[ '/users' ]" routerLinkActive="active">Usuarios</a>
     <a [routerLink]="[ '/planes' ]" routerLinkActive="active">Planes</a>
     <a [routerLink]="[ '/inventario' ]" routerLinkActive="active">Inventario</a>
     <a [routerLink]="[ '/facturas' ]" routerLinkActive="active">Facturas</a>
+    <a (click)="auth.SignOut()">Cerrar Sesión</a>
   </mat-toolbar-row>
 </mat-toolbar>

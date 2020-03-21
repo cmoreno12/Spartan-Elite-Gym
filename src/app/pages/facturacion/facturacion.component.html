@@ -1,6 +1,6 @@
 <mat-card style="display: flex;flex-direction: column;justify-content: center;height: 85%;">
-  <mat-card-header style="display: flex; justify-content: space-around;align-items: flex-end;">
-    <button mat-raised-button class="custom-button" (click)="generarPDF()" color="primary">Imprimir</button>
+  <mat-card-header *ngIf="factura" style="display: flex; justify-content: space-around;align-items: flex-end;">
+    <button mat-raised-button class="custom-button" (click)="generarPDF()" style="background-color: black;color:white;">Imprimir</button>
   </mat-card-header>
   <mat-card-content style="display: flex;justify-content: center;margin-right: 100px;">
     <mat-card id="toPdf" *ngIf="factura" style="width: 25%;">

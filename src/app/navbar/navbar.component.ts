@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { FacturarComponent } from '../pages/inventarios/facturar/facturar.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'seg-navbar',
@@ -9,7 +8,7 @@ import { FacturarComponent } from '../pages/inventarios/facturar/facturar.compon
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public auth:AuthService) { }
 
   ngOnInit() {
   }

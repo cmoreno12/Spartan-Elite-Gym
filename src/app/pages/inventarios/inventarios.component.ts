@@ -91,11 +91,11 @@ export class InventariosComponent implements OnInit {
         }
         array.push(inventario)
       })
-      this.rowData = array;
+      this.rowData = array.filter(x => !x.oculto);
     })
   }
 
-  onGridReady(event){
+  onGridReady(event) {
     event.api.sizeColumnsToFit();
   }
 

@@ -15,10 +15,10 @@
     </mat-grid-tile>
   </mat-grid-list>
   <div class="actionBtn">
-    <button mat-raised-button color="primary" (click)="triggerSnapshot()" class="custom-button">Capturar</button>
+    <button mat-raised-button style="background-color: black;color:white;" (click)="triggerSnapshot()" class="custom-button">Capturar</button>
   </div>
 </div>
 <div mat-dialog-actions style="flex-direction: row; justify-content: flex-end;">
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="pictureTake" color="primary" cdkFocusInitial>Confirmar</button>
+  <button mat-button [mat-dialog-close]="pictureTake" style="background-color: black;color:white;" cdkFocusInitial>Confirmar</button>
 </div>

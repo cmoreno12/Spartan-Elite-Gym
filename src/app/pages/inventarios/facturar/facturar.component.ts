@@ -100,7 +100,7 @@ export class FacturarComponent {
     }
   }
 
-  onGridReady(event){
+  onGridReady(event) {
     event.api.sizeColumnsToFit();
   }
 
@@ -159,6 +159,11 @@ export class FacturarComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.firebaseDataService.createElement('facturas', result).then(x => {
+        this.rowData.forEach(x => {
+          const inventario = this.inventarios.filter(j => j.id === x.idInventario).pop();
+          inventario.cantidad = inventario.cantidad - 1;
+          this.firebaseDataService.updateElement('inventarios', inventario.id, inventario);
+        })
         this.router.navigate(['/factura'], { queryParams: { id: x.id } });
         this.dialogRef.close();
       })

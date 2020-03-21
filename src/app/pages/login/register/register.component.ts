@@ -27,6 +27,6 @@ export class RegisterComponent {
 
   register(email: string, password: string,username:string,role:string) {
     debugger
-    this.auth.SignUp(email, password,username,role).finally(() => this.dialogRef.close());
+    this.auth.SignUp(email, password,role,username).finally(() => this.dialogRef.close());
   }
 }
