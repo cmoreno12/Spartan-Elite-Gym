@@ -42,7 +42,7 @@
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="3">
       <ag-grid-angular style="width: 96%;height: 85%;margin:1%" class="ag-theme-balham" [rowData]="rowData"
-        [columnDefs]="columnDefs" [rowHeight]="45">
+        [columnDefs]="columnDefs" [rowHeight]="45" (gridReady)="onGridReady($event)">
       </ag-grid-angular>
     </mat-grid-tile>
   </mat-grid-list>

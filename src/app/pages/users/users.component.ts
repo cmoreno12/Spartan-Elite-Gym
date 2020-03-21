@@ -23,21 +23,18 @@ export class UsersComponent implements OnInit {
     {
       headerName: 'Cedula',
       field: 'cedula',
-      width: '150',
       sortable: true,
       filter: "agTextColumnFilter"
     },
     {
       headerName: 'Nombres',
       field: 'nombres',
-      width: '150',
       sortable: true,
       filter: "agTextColumnFilter"
     },
     {
       headerName: 'Apellidos',
       field: 'apellidos',
-      width: '150',
       sortable: true,
       filter: "agTextColumnFilter"
     },
@@ -49,25 +46,21 @@ export class UsersComponent implements OnInit {
     {
       headerName: 'EPS',
       field: 'EPS',
-      width: '100'
     },
     {
       headerName: 'Rh',
       field: 'RH',
-      width: '50'
     },
     {
       headerName: 'Plan',
       field: 'plan',
       sortable: true,
-      width: '173'
     },
     {
       headerName: 'Inicio',
       field: 'inicio',
       sortable: true,
       cellRendererFramework: DateRendererComponent,
-      width: '150',
       filter: "agDateColumnFilter",
       filterParams: {
         comparator: function (filterLocalDateAtMidnight, cellValue) {
@@ -92,7 +85,6 @@ export class UsersComponent implements OnInit {
       headerName: 'Vencimiento',
       field: 'vencimiento',
       sortable: true,
-      width: '160',
       filter: "agDateColumnFilter",
       cellRendererFramework: DateRendererComponent,
       filterParams: {
@@ -118,19 +110,16 @@ export class UsersComponent implements OnInit {
       headerName: 'Estado',
       field: 'estado',
       sortable: true,
-      width: '100',
       filter: "agTextColumnFilter"
     },
     {
       headerName: 'Clave',
       field: 'clave',
       sortable: true,
-      width: '100',
       filter: "agTextColumnFilter"
     },
     {
       headerName: '',
-      width: '100',
       cellRendererFramework: ActionRendererComponent,
       cellRendererParams: {
         isEdit: true,
@@ -145,6 +134,10 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+  }
+
+  onGridReady(event){
+    event.api.sizeColumnsToFit();
   }
 
   private getData(): any {
@@ -180,12 +173,9 @@ export class UsersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.rowData = this.getData();
       if(result){
-        const dialogRef = this.dialog.open(FacturarComponent, {
+        this.dialog.open(FacturarComponent, {
           width: '1500px',
           data: { result }
-        });
-        dialogRef.afterClosed().subscribe(result => {
-
         });
       }
     });

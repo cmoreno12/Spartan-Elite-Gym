@@ -58,6 +58,10 @@ export class PlansComponent implements OnInit {
     this.getData();
   }
 
+  onGridReady(event){
+    event.api.sizeColumnsToFit();
+  }
+
   private getData(): any {
     this.firebaseDataService.getData('planes').subscribe(res => {
       const array = [];

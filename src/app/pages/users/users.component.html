@@ -5,16 +5,13 @@
       <p class="activos">Activos: {{activos}}</p>
       <p class="inactivos">Inactivos: {{inactivos}}</p>
     </div>
-    <button mat-raised-button color="primary" (click)="createUser()"
-    class="custom-button">Crear Usuario</button>
-    <button mat-raised-button color="primary" (click)="realizarPago()"
-    class="custom-button">Pagos</button>
+    <button mat-raised-button color="primary" (click)="createUser()" class="custom-button">Crear Usuario</button>
+    <button mat-raised-button color="primary" (click)="realizarPago()" class="custom-button">Pagos</button>
   </mat-card-header>
   <mat-card-content style="height: 95%;">
-    <ag-grid-angular style="height: 90%;margin:1%" class="ag-theme-balham" [rowData]="rowData"
-      [columnDefs]="columnDefs" [rowHeight]="35">
+    <ag-grid-angular style="height: 90%;margin:1%" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs"
+      [rowHeight]="35" (gridReady)="onGridReady($event)">
     </ag-grid-angular>
   </mat-card-content>
 
 </mat-card>
-

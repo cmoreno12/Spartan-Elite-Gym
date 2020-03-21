@@ -93,4 +93,8 @@ export class ListaFacturasComponent implements OnInit {
     })
   }
 
+  onGridReady(event){
+    event.api.sizeColumnsToFit();
+  }
+
 }

@@ -95,6 +95,10 @@ export class InventariosComponent implements OnInit {
     })
   }
 
+  onGridReady(event){
+    event.api.sizeColumnsToFit();
+  }
+
   createInventario() {
     const dialogRef = this.dialog.open(CreateInventarioComponent, {
       width: '700px',

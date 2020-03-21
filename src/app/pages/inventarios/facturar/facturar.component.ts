@@ -100,6 +100,10 @@ export class FacturarComponent {
     }
   }
 
+  onGridReady(event){
+    event.api.sizeColumnsToFit();
+  }
+
   inicializar() {
     this.findUser(this.dataInit.cedula);
   }
@@ -155,7 +159,7 @@ export class FacturarComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.firebaseDataService.createElement('facturas', result).then(x => {
-        this.router.navigate(['/facturacion'], { queryParams: { id: x.id } });
+        this.router.navigate(['/factura'], { queryParams: { id: x.id } });
         this.dialogRef.close();
       })
     });
