@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'seg-navbar',
@@ -12,7 +13,9 @@ export class NavbarComponent implements OnInit {
   constructor(public auth:AuthService) { }
 
   ngOnInit() {
-    this.email = JSON.parse(sessionStorage.getItem('user')).email;
+    timer(2500).subscribe(()=>{
+      this.email = JSON.parse(sessionStorage.getItem('user')).email;
+    })
   }
 
 }

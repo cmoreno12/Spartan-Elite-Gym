@@ -30,7 +30,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          sessionStorage.setItem('user', 'ASD');
+          sessionStorage.setItem('user', JSON.stringify(['asd']));
           this.router.navigate(['users']);
         });
         this.SetUserData(result.user);

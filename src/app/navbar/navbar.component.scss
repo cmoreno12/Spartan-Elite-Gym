@@ -6,13 +6,34 @@
   flex: 1 1 auto;
 }
 
-
-a{
+p{
   color:white;
-  text-decoration: none;
+  font-family: 'Righteous', cursive;
   margin: 0 8px;
 }
 
+a{
+  color:white;
+  cursor: pointer;
+  margin: 0 8px;
+  text-decoration: none;
+  
+  &:hover{
+    color:#ff741d;
+  }
+
+  &:last-child{
+    background-color: #ff741d;
+    color:white;
+    padding: 16px;
+  }
+
+  &:last-child:hover{
+    color:white;
+    cursor: pointer;
+  }
+}
+
 .active{
-  color:rgb(231, 226, 226);
+  color:#ff741d;
 }
