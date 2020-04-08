@@ -3,7 +3,8 @@
   <mat-grid-list cols="3" rowHeight="100px">
     <mat-grid-tile>
       <mat-form-field class="fieldFullWidth">
-        <input autocomplete="off" matInput placeholder="Cedula" [disabled]="esEditar" [(ngModel)]="cedula" name="cedula" required>
+        <input autocomplete="off" matInput placeholder="Cedula" [disabled]="esEditar" [(ngModel)]="cedula" name="cedula"
+          required>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
@@ -47,7 +48,7 @@
     <mat-grid-tile>
       <mat-form-field class="fieldFullWidth">
         <mat-label>Sexo</mat-label>
-        <select matNativeControl matNativeControl  [(ngModel)]="sexo" ngDefaultControl required>
+        <select matNativeControl matNativeControl [(ngModel)]="sexo" ngDefaultControl required>
           <option value="Femenino">Femenino</option>
           <option value="Masculino">Masculino</option>
         </select>
@@ -61,13 +62,16 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      <button (click)="capturarHuellas()">Capturar Huella</button>
+    </mat-grid-tile>
     <mat-grid-tile>
       <mat-form-field class="fieldFullWidth">
         <input autocomplete="off" matInput placeholder="Ciudad" [(ngModel)]="ciudad" name="ciudad" required>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
-      <mat-form-field class="fieldFullWidth" >
+      <mat-form-field class="fieldFullWidth">
         <mat-label>Estado</mat-label>
         <select matNativeControl [(ngModel)]="estado" ngDefaultControl required>
           <option value="Activo">Activo</option>
@@ -84,5 +88,6 @@
 </div>
 <div mat-dialog-actions style="flex-direction: row; justify-content: flex-end;">
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button (click)="create()" style="background-color: black;color:white;">{{esEditar?'Guardar Cambios':'Crear Usuario'}}</button>
+  <button mat-button (click)="create()"
+    style="background-color: black;color:white;">{{esEditar?'Guardar Cambios':'Crear Usuario'}}</button>
 </div>

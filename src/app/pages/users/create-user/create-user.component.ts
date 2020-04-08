@@ -4,13 +4,13 @@ import { WebcamImage } from 'ngx-webcam';
 
 import { CaptureImageComponent } from './capture-image/capture-image.component';
 import { UserGym } from '../../../models/user-gym.class';
-import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 import { FirebaseDataService } from '../../../services/firebase.service';
-
+import { FingerPrintService } from 'src/app/services/fingerPrint.service';
 
 @Component({
   selector: 'seg-create-user',
   templateUrl: './create-user.component.html',
+  providers: [FingerPrintService],
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent {
@@ -20,6 +20,7 @@ export class CreateUserComponent {
   nombre: string;
   eps: string;
   apellidos: string;
+  huellas: boolean;
   RH: string = "O+";
   sexo: string = 'Femenino';
   fechaNacimiento: Date;
@@ -32,6 +33,7 @@ export class CreateUserComponent {
 
   constructor(
     public dialog: MatDialog,
+    private fingerPrintService: FingerPrintService,
     private firebaseDataService: FirebaseDataService,
     public dialogRef: MatDialogRef<CreateUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -56,6 +58,7 @@ export class CreateUserComponent {
     this.estado = data.estado;
     this.direccion = data.direccion;
     this.userImage = data.userImage;
+    this.huellas = data.huellas;
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -105,8 +108,15 @@ export class CreateUserComponent {
       fechaNacimiento: this.fechaNacimiento,
       sexo: this.sexo,
       userImage: this.userImage,
+      huellas: this.huellas,
       clave: clave.toString()
     }
+  }
+
+  capturarHuellas() {
+    this.fingerPrintService.capturarHuella().subscribe(response => {
+      this.huellas = response.length > 0;
+    })
   }
 
 }

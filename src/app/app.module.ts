@@ -17,6 +17,7 @@ import { PlansModule } from './pages/plans/plans.module';
 import { InventariosModule } from './pages/inventarios/inventarios.module';
 import { FacturacionComponent } from './pages/facturacion/facturacion.component';
 import { FacturacionModule } from './pages/facturacion/facturacion.module';
+import { environment } from 'src/environments/environment';
 
 const firebaseConfig = {
   apiKey: "AIzaSyA-k3p-LTKXPwExuZYO5vlcMtnRbu8sYzI",
@@ -49,7 +50,12 @@ const firebaseConfig = {
     AgGridModule.withComponents([]),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'apiUrl',
+      useValue: environment.url
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

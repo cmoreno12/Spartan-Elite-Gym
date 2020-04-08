@@ -15,5 +15,6 @@ export interface UserGym {
   inicio?: Date;
   sexo?: string;
   userImage?: string;
+  huellas?: boolean;
   clave?: string;
 }
